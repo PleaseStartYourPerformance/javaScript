@@ -1,5 +1,5 @@
 # JavaScript:一年后你会感谢今天的自己
-#7.17:考虑到性能问题，如何快速从一个巨大的数组中随机获取部分元素 比如有个数组有100K个元素，从中不重复随机选取10K个元素。
+##7.17:考虑到性能问题，如何快速从一个巨大的数组中随机获取部分元素 比如有个数组有100K个元素，从中不重复随机选取10K个元素。
 ```js
 const arrRadom = function (len,arrlen) {
   let set = new Set();
@@ -61,7 +61,7 @@ let set3 = new Set(new Array(7, 8, 9))<br>
 let set4 = new Set([4, 5, 6])<br>
 console.log('set to array 1:', [...set4])<br>
 console.log('set to array 2:', Array.from(set4))<br>
-#7.18:请写出下列代码的返回值
+##7.18:请写出下列代码的返回值
 ```js
 var name = 'Tom';
 (function() {
@@ -78,7 +78,7 @@ var name = 'Tom';
  如果没有 var name = 'Jack' 那么就不会存在变量提升  
  打印的就是hello Tom 但是存在var name = 'Jack' 
  立即执行函数的var name会提升到最前面  name = undefined  
-#7.19 扩展上一题
+##7.19 扩展上一题
 ```js
 var name = 'Tom';
 (function() {
@@ -97,7 +97,7 @@ var name = 'Tom';
 4、执行else的内容，得到Hello Tom<br>
 
 
-#7.23:编程题
+##7.23:编程题
  
 > 第 111 题：编程题，写个程序把 entry 转换成如下对象
  ```js
@@ -139,7 +139,7 @@ var name = 'Tom';
    }
    console.log(ent(entry));
  ```
-#7.24:编程题写个程序把 entry 转换成如下对象（跟昨日题目相反）
+##7.24:编程题写个程序把 entry 转换成如下对象（跟昨日题目相反）
 ```js
 var entry = {
   'a.b.c.dd': 'abcdd',
