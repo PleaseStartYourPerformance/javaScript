@@ -162,3 +162,28 @@ var output = {
 }
 ```
 解析：
+## 7.26:编程题，找出字符串中连续出现最多的字符和个数（蘑菇街）
+'abcaakjbb' => {'a':2,'b':2}<br>
+'abbkejsbcccwqaa' => {'c':3}
+解析:
+```js
+//大佬
+const arr = str.match(/(\w)\1*/g);
+const maxLen = Math.max(...arr.map(s => s.length));
+const result = arr.reduce((pre, curr) => {
+  if (curr.length === maxLen) {
+    pre[curr[0]] = curr.length;
+  }
+  return pre;
+}, {});
+//我---只能筛选出全部。。。
+ function typefilter(str) {
+        let obj = {}
+        str.split('').forEach(item=>{
+            obj[item] === undefined ?  obj[item] = 1 : obj[item]++
+        })
+        return obj
+    }
+    console.log(typefilter(b));
+console.log(result);
+```
