@@ -187,3 +187,19 @@ const result = arr.reduce((pre, curr) => {
     console.log(typefilter(b));
 console.log(result);
 ```
+## 7.30:输出以下代码运行结果
+1 + "1"
+
+2 * "2"
+
+[1, 2] + [2, 1]
+
+"a" + + "b"
+
+解析：
+```js
+'11'
+ 4
+'1,22,1'
+'aNaN'
+```
