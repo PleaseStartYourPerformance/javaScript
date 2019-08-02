@@ -96,7 +96,6 @@ var name = 'Tom';
 3、通过作用域链找到最外层，得到name属性<br>
 4、执行else的内容，得到Hello Tom<br>
 
-
 ## 7.23:编程题
  
 > 第 111 题：编程题，写个程序把 entry 转换成如下对象
@@ -163,8 +162,9 @@ var output = {
 ```
 解析：
 ## 7.26:编程题，找出字符串中连续出现最多的字符和个数（蘑菇街）
-'abcaakjbb' => {'a':2,'b':2}<br>
-'abbkejsbcccwqaa' => {'c':3}
+>'abcaakjbb' => {'a':2,'b':2}<br>
+>'abbkejsbcccwqaa' => {'c':3}<br>
+
 解析:
 ```js
 //大佬
@@ -188,13 +188,10 @@ const result = arr.reduce((pre, curr) => {
 console.log(result);
 ```
 ## 7.30:输出以下代码运行结果
-1 + "1"
-
-2 * "2"
-
-[1, 2] + [2, 1]
-
-"a" + + "b"
+>1 + "1"<br>
+>2 * "2"<br>
+>[1, 2] + [2, 1]<br>
+>"a" + + "b"
 
 解析：
 ```js
