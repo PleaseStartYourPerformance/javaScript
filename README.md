@@ -203,3 +203,25 @@ console.log(result);
 '1,22,1'
 'aNaN'
 ```
+## 8.1:编程题--递归
+>1.创建一个长度为5得数据arr<br>
+>2.生成一个（min,max）之间得随机整数 rand<br>
+>3.把随机数rand插入到数组arr中，如果数组arr内存在于rand相同的数字，则重新生成
+>随机数边插入arr中（需要使用递归不能使用for和while等遍历器）<br>
+>4.最终输出一个长度为5，内容不重复的arr
+```js
+    function filter(max,min,arr,index) {
+        var random = () => Math.floor(Math.random()*(max-min)+min)
+        var item = random()
+        if(index === 5){
+            return arr
+        }
+        if(arr.includes(item)){
+            item = random()
+        }
+        arr[index] = item;
+        filter(max,min,arr,++index)
+        return arr
+    }
+    console.log(filter(100, 1,[], 0));
+```
