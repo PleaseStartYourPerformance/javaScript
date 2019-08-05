@@ -222,3 +222,33 @@ console.log(result);
     }
     console.log(filter(100, 1,[], 0));
 ```
+## 8.5:为什么for循环嵌套顺序会影响性能
+```js
+var t1 = new Date().getTime()
+for (let i = 0; i < 100; i++) {
+  for (let j = 0; j < 1000; j++) {
+    for (let k = 0; k < 10000; k++) {
+    }
+  }
+}
+var t2 = new Date().getTime()
+console.log('first time', t2 - t1)
+//first time 280
+for (let i = 0; i < 10000; i++) {
+  for (let j = 0; j < 1000; j++) {
+    for (let k = 0; k < 100; k++) {
+
+    }
+  }
+}
+var t3 = new Date().getTime()
+console.log('two time', t3 - t2)  
+//two time 359
+```
+解析：
+```js
+两个循环的次数的是一样的，但是 j 与 k 的初始化次数是不一样的
+第一个循环的 j 的初始化次数是 100 次，k 的初始化次数是 10w 次
+第二个循环的 j 的初始化次数是 1w 次， k 的初始化次数是 1000w 次
+所以相同循环次数，外层越大，越影响性能
+```
