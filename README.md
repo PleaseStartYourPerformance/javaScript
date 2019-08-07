@@ -16,15 +16,19 @@ const arrRadom = function (len,arrlen) {
 }
 ```
 扩展：
-数组转set new Set(arr)  set转数组 Array.from(set)<br>
+>数组转set new Set(arr)  
+set转数组 Array.from(set)<br>
 es6 Set(); 
 似于数组，但它的一大特性就是所有元素都是唯一的，没有重复。<br>
 我们可以利用这一唯一特性进行数组的去重工作。<br>
 let list=new Set([1,1,2,3,4])<br>
+
+set中数组长度 list.size
 (1)添加元素 add<br>
 let list=new Set();<br>
 list.add="1"<br>
 list.add="2"<br>
+list.add(2)//类似数组push<br>
 (2)删除元素 delete<br>
 let list=new Set([1,2,3,4])<br>
 list.delete(2)<br>
