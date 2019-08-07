@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电力需求方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // 7.23
+    var entry = {
+        a: {
+            b: {
+                c: {
+                    dd: 'abcdd'
+                }
+            },
+            d: {
+                xx: 'adxx'
+            },
+            e: 'ae'
+        }
+    }
+    // 要求转换成如下对象
+    var output = {
+        'a.b.c.dd': 'abcdd',
+        'a.d.xx': 'adxx',
+        'a.e': 'ae'
+    }
+    function ent(entry,prevKey=null,result = {}) {
+        Object.keys(entry).forEach(item=>{
+            //记录对象的键值
+            prevKey =  prevKey ? `${prevKey}.${item}` : item;
+            if(Object.prototype.toString.call(entry[item]) === '[object Object]'){
+                //递归往下走
+                ent(entry[item],prevKey,result);
+            }else{
+                //找不到了后赋值操作然后继续循环下一条
+                result[prevKey] = entry[item]
+            }
+        })
+        return result
+    }
+    // console.log(ent(entry));
+    function reverses(output,pre = null,res = {}) {
+        for(let key in output){
+            if(key.indexOf('.')!==-1){
+
+                console.log(key.split('.'));
+            }else{
+                console.log(1);
+            }
+
+        }
+    }
+
+
+
+    function flat(obj, key = "", res = {}) {
+        Object.keys(obj).forEach(k => {
+            if (Object.prototype.toString.call(obj[k]) === "[object Object]") {
+                flat(obj[k], key + k, res);
+            } else {
+                res[key + k] = obj[k];
+            }
+        });
+        return res;
+    }
+    // console.log(flat(entry));
+
+    function flatObject2(obj) {
+        const flat = {};
+        getFlat(null, obj);
+        return flat;
+        /**
+         * 递归将对象扁平化
+         * @param {String | null} prevKey 前面的key
+         * @param {Object} obj 当前操作对象
+         */
+        function getFlat(prevKey, obj) {
+            Object.keys(obj).forEach(k => {
+                const currentKey = prevKey ? `${prevKey}.${k}` : k;
+                if (Object.prototype.toString.call(obj[k]) !== '[object Object]') {
+                    flat[currentKey] = obj[k];
+                } else {
+                    getFlat(currentKey, obj[k]);
+                }
+            });
+        }
+    }
+    // console.log(flatObject2(entry));
+</script>
+</html>

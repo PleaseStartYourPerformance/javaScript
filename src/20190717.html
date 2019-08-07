@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电力需求方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 7.17
+  const arrRadom = function (len,arrlen) {
+    let set = new Set();
+    let result = []
+    let arr = Array.from({length:arrlen},(v,i)=>i);
+    while(set.size < len){
+      let index  = Math.floor(Math.random() * arrlen);
+      set.add(index);
+    }
+    for(let i of set.values()) {
+      result.push(arr[i]);
+    }
+    return result;
+  }
+</script>
+</html>

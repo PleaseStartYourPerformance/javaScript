@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电力需求方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+//7.26
+var a = 'abcaakjbb'
+    var b = {'a':2,'b':2}
+   var b ='abbkejsbcccwqaa'
+    var c = {'c':3}
+
+    function typefilter(str) {
+        let obj = {}
+        str.split('').forEach(item=>{
+            obj[item] === undefined ?  obj[item] = 1 : obj[item]++
+        })
+        return obj
+    }
+    // console.log(typefilter(b));
+
+    var str ='abbkejsbcccwqaa'
+    const typeArr = str.match(/(\w)\1*/g);
+    const maxLen = Math.max(...typeArr.map(s => s.length));
+    const result = typeArr.reduce((pre, curr) => {
+        if (curr.length === maxLen) {
+            pre[curr[0]] = curr.length;
+        }
+        return pre;
+    }, {});
+
+    // [1,2,3,4,5].reduce((prev,next)=>{
+    //     console.log(prev);
+    //     console.log(next);
+    // })
+</script>
+</html>

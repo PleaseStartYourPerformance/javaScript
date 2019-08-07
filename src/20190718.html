@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电力需求方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //7.18
+    let value = 1
+    function fun() {
+        console.log(value);
+    }
+    function bar() {
+        let value = 2
+        console.log(value);
+        fun();
+    }
+    var name = 'Tom';
+    function arr() {
+        console.log(name);
+        if (typeof name == 'undefined') {
+            var name = 'Jack';
+            console.log('Goodbye ' + name);
+        } else {
+            console.log('Hello ' + name);
+        }
+    }
+</script>
+</html>
