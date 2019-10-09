@@ -256,3 +256,60 @@ console.log('two time', t3 - t2)
 第二个循环的 j 的初始化次数是 1w 次， k 的初始化次数是 1000w 次
 所以相同循环次数，外层越大，越影响性能
 ```
+## 10.9: 手写call apply bind义及实现原理详见201910.9.html
+```js
+Function.prototype.myCall = function (context) {
+    if (typeof context === 'undefined' || context === null) {
+        context = window
+    }
+    //context是传入的this也就是food函数  this是product函数this也是指向这个函数
+    context.fn = this
+    //获取传入除了this的参数 也是product的参数 也就是 args=['chese',5]
+    let args = [...arguments].slice(1);
+    //content.fn 为product这个函数  ...args为解构传参也就是此时相当于在product函数中进行传参
+    let result = context.fn(...args)
+    delete context.fn
+    return result
+}
+```
+```js
+Function.prototype.myApply = function(context) {
+    if (typeof context === 'undefined' || context === null) {
+        context = window
+    }
+    context.fn = this
+    //与call的区别就是 后面的参数使用了数组 那么arguments[1]才是我们想要的参数
+    let args = arguments[1]
+    let result
+    args ? result = context.fn(...args) : result = context.fn()
+    delete context.fn
+    return result
+}
+```
+```js
+  Function.prototype.myBind = function(context) {
+        if (typeof this !== 'function') {
+            throw new TypeError('Error')
+        }
+        let _this = this
+        let args = [...arguments].slice(1)
+        return function F() {
+            // 判断是否被当做构造函数使用
+            if (this instanceof F) {
+                return _this.apply(this, args.concat([...arguments]))
+            }
+            return _this.apply(context, args.concat([...arguments]))
+        }
+    }
+```
+```js
+function product(name,price) {
+    this.name = name
+    this.price = price
+}
+function Food(name, price) {
+    product.myApply(this, [name, price]);
+    product.myCall(this, [name, price]);
+}
+console.log(new Food('cheese', 5).name);
+```

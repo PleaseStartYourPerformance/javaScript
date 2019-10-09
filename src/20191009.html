@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电力需求方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //10.09
+//     apply和call的区别就是传的参数形式不一样。call是一个一个的传，apply可以将参数以数组的形式传进去。
+//     而bind是传入第二个和后面的参数，且绑定this，返回一个转化后的函数。考虑两点
+//     arguments 是一个对应于传递给函数的参数的类数组对象
+Function.prototype.myCall = function (context) {
+    if (typeof context === 'undefined' || context === null) {
+        context = window
+    }
+    //context是传入的this也就是food函数  this是product函数this也是指向这个函数
+    context.fn = this
+    //获取传入除了this的参数 也是product的参数 也就是 args=['chese',5]
+    let args = [...arguments].slice(1);
+    //content.fn 为product这个函数  ...args为解构传参也就是此时相当于在product函数中进行传参
+    let result = context.fn(...args)
+    delete context.fn
+    return result
+}
+
+Function.prototype.myApply = function(context) {
+    if (typeof context === 'undefined' || context === null) {
+        context = window
+    }
+    context.fn = this
+    //与call的区别就是 后面的参数使用了数组 那么arguments[1]才是我们想要的参数
+    let args = arguments[1]
+    let result
+    args ? result = context.fn(...args) : result = context.fn()
+    delete context.fn
+    return result
+}
+
+    Function.prototype.myBind = function(context) {
+        if (typeof this !== 'function') {
+            throw new TypeError('Error')
+        }
+        let _this = this
+        let args = [...arguments].slice(1)
+        return function F() {
+            // 判断是否被当做构造函数使用
+            if (this instanceof F) {
+                return _this.apply(this, args.concat([...arguments]))
+            }
+            return _this.apply(context, args.concat([...arguments]))
+        }
+    }
+
+function product(name,price) {
+    this.name = name
+    this.price = price
+}
+function Food(name, price) {
+    product.myApply(this, [name, price]);
+    product.myCall(this, [name, price]);
+}
+console.log(new Food('cheese', 5).name);
+
+
+</script>
+</html>
