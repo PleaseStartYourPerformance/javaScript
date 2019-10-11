@@ -303,13 +303,17 @@ Function.prototype.myApply = function(context) {
     }
 ```
 ```js
-function product(name,price) {
-    this.name = name
-    this.price = price
+var obj = {
+    name:'盖伦',
+    age:'25',
+    myFun:function () {
+        console.log(this.name +  '年龄' + this.age)
+    }
 }
-function Food(name, price) {
-    product.myApply(this, [name, price]);
-    product.myCall(this, [name, price]);
+
+var obj2 = {
+    name:'卡特',
+    age:'23'
 }
-console.log(new Food('cheese', 5).name);
+obj.myFun.myCall(obj2)
 ```

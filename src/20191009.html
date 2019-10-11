@@ -17,6 +17,8 @@ Function.prototype.myCall = function (context) {
     if (typeof context === 'undefined' || context === null) {
         context = window
     }
+    console.log(context);
+    console.log(this);
     //context是传入的this也就是food函数  this是product函数this也是指向这个函数
     context.fn = this
     //获取传入除了this的参数 也是product的参数 也就是 args=['chese',5]
@@ -40,7 +42,7 @@ Function.prototype.myApply = function(context) {
     return result
 }
 
-    Function.prototype.myBind = function(context) {
+Function.prototype.myBind = function(context) {
         if (typeof this !== 'function') {
             throw new TypeError('Error')
         }
@@ -55,15 +57,20 @@ Function.prototype.myApply = function(context) {
         }
     }
 
-function product(name,price) {
-    this.name = name
-    this.price = price
+var obj = {
+    name:'盖伦',
+    age:'25',
+    myFun:function () {
+        console.log(this.name +  '年龄' + this.age)
+    }
 }
-function Food(name, price) {
-    product.myApply(this, [name, price]);
-    product.myCall(this, [name, price]);
+
+var obj2 = {
+    name:'卡特',
+    age:'23'
 }
-console.log(new Food('cheese', 5).name);
+obj.myFun.myCall(obj2)
+
 
 
 </script>
